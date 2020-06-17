@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Question } from '../question';
 
 
@@ -9,12 +9,52 @@ import { Question } from '../question';
 })
 export class QuestionComponent implements OnInit {
 
-  @Input() question: Question;
-
   constructor() { }
 
+  @Output() updateQuestion: EventEmitter<any> = new EventEmitter<any>();
+  @Input() question: Question;
+  isAnswerTrue: boolean;
+  result: string;
+  questionIsAnswered = false;
+  clickedAnswer: number;
+
   ngOnInit(): void {
-    console.log(this.question);
+    this.isAnswerTrue = null;
+    this.result = null;
   }
 
+  getResult(): string {
+    if (this.isAnswerTrue) {
+      return 'Correct';
+    } else if (this.isAnswerTrue === false) {
+      return 'Incorrect';
+    }
+    return '';
+  }
+
+  getResultClass(answer): string {
+    if (answer.answer === this.clickedAnswer) {
+      if (this.questionIsAnswered && answer.true) {
+        return 'question__answer--green';
+      } else if (this.questionIsAnswered  && !answer.true) {
+        return 'question__answer--red';
+      } else {
+        return '';
+      }
+    }
+    if (this.questionIsAnswered) {
+      if (answer.true) {
+        return 'question__answer--green-light';
+      }
+    }
+  }
+
+
+  onSelect(answer): void {
+    this.clickedAnswer = answer.answer;
+    this.questionIsAnswered = true;
+    answer.true === true ? this.isAnswerTrue = true : this.isAnswerTrue = false;
+    this.updateQuestion.emit(answer);
+
+  }
 }
