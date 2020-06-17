@@ -14,17 +14,22 @@ export class QuizComponent implements OnInit {
   questions: Question[];
   activeQuestion: Question;
   questionIdx = 0;
+  questionCount: number;
+  buttonIsEnabled = false;
+
 
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
     this.getQuestions();
     this.setActiveQuestion();
+    this.questionCount = this.questions.length;
   }
 
   incrementQuestionIdx(): void {
     this.questionIdx++;
     this.setActiveQuestion();
+    this.buttonIsEnabled = false;
   }
 
   setActiveQuestion(): void {
@@ -33,6 +38,10 @@ export class QuizComponent implements OnInit {
 
   getQuestions(): void {
     this.questions = this.quizService.getQuestions();
+  }
+
+  enableNavigation(): void {
+    this.buttonIsEnabled = true;
   }
 
 }
