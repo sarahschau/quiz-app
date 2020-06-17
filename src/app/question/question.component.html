@@ -1,0 +1,6 @@
+<div class="questions">
+    <h2>Question: {{ question.question }}</h2>
+    <div class="question__answers">
+        <button class="question__answer" *ngFor="let answer of question.answers">{{ answer.answer }}</button>
+    </div>
+</div>

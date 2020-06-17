@@ -1,0 +1,18 @@
+.question {
+    &__answers {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__answer {
+        padding: 15px 20px;
+        margin: 0 20px;
+        background-color: transparent;
+        border: 1px solid #111111;
+        border-radius: 5px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
