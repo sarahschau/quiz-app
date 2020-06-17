@@ -1,5 +1,9 @@
-<p>quiz works!</p>
-
+ 
+<h2 class="quiz__title">Question {{ questionIdx+1 }} of {{ questionCount }}</h2>
 <div class="quiz__questions">
-    <app-question [question]="activeQuestion"></app-question>
+    <app-question (updateQuestion)="enableNavigation()" [question]="activeQuestion"></app-question>
+</div>
+
+<div class="quiz__navigation">
+    <button class="quiz__navigation-btn" *ngIf="questionCount - 1 !== questionIdx && buttonIsEnabled" (click)="incrementQuestionIdx()">Next</button>
 </div>
