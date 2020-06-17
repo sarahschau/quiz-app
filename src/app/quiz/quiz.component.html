@@ -1,7 +1,5 @@
 <p>quiz works!</p>
 
 <div class="quiz__questions">
-    <div *ngFor="let question of questions" class="question">
-        <app-question [question]="question"></app-question>
-    </div>
+    <app-question [question]="activeQuestion"></app-question>
 </div>

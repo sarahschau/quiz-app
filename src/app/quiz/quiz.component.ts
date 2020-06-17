@@ -12,12 +12,23 @@ import { Question } from '../question';
 export class QuizComponent implements OnInit {
 
   questions: Question[];
-  activeQuestion = 0;
+  activeQuestion: Question;
+  questionIdx = 0;
 
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
     this.getQuestions();
+    this.setActiveQuestion();
+  }
+
+  incrementQuestionIdx(): void {
+    this.questionIdx++;
+    this.setActiveQuestion();
+  }
+
+  setActiveQuestion(): void {
+    this.activeQuestion = this.questions[this.questionIdx];
   }
 
   getQuestions(): void {
