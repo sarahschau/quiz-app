@@ -1,0 +1,17 @@
+.quiz {
+
+    &__title {
+        margin-top: 50px;
+    }
+
+    &__navigation-btn {
+        background-color: transparent;
+        margin-top: 100px;
+        border: 1px solid #111;
+    }
+    
+    &__navigation {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
