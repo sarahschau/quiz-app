@@ -1,6 +1,6 @@
 <div class="questions">
     <h2>Question: {{ question.question }}</h2>
-    <div class="question__answers">
-        <button class="question__answer" *ngFor="let answer of question.answers">{{ answer.answer }}</button>
+    <div class="question__answers" [class]="questionIsAnswered ? 'question__answers--answered' : null">
+        <button class="question__answer" [class]="getResultClass(answer)" *ngFor="let answer of question.answers" (click)="onSelect(answer)" [disabled]="questionIsAnswered">{{ answer.answer }}</button>
     </div>
 </div>
