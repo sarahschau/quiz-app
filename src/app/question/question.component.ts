@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, SimpleChanges } from '@angular/core';
 import { Question } from '../question';
 
 
@@ -21,6 +21,13 @@ export class QuestionComponent implements OnInit {
   ngOnInit(): void {
     this.isAnswerTrue = null;
     this.result = null;
+    this.clickedAnswer = null;
+    this.questionIsAnswered = false;
+  }
+
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngOnChanges(changes: SimpleChanges) {
+    this.questionIsAnswered = false;
   }
 
   getResult(): string {
@@ -57,4 +64,6 @@ export class QuestionComponent implements OnInit {
     this.updateQuestion.emit(answer);
 
   }
+
+
 }
